@@ -11,9 +11,8 @@ export RTLMP_MIN_INST = 5000
 export RTLMP_MAX_MACRO = 12
 export RTLMP_MIN_MACRO = 4 
 
-export VERILOG_FILES = ./designs/src/swerv/swerv_wrapper.sv2v.v \
-                       ./designs/$(PLATFORM)/swerv/macros.v
-export SDC_FILE      = ./designs/$(PLATFORM)/swerv_wrapper/swerv_wrapper.sdc
+export VERILOG_FILES = ./results/$(PLATFORM)/swerv_wrapper/3D/1_synth.v
+export SDC_FILE      = ./results/$(PLATFORM)/swerv_wrapper/3D/1_synth.sdc
 
 export ADDITIONAL_LEFS = $(PLATFORM_DIR)/lef_upper_shrink/fakeram45_2048x39.upper.lef \
                          $(PLATFORM_DIR)/lef_upper_shrink/fakeram45_256x34.upper.lef \
@@ -45,5 +44,5 @@ export PLACE_DENSITY = 0.43
 export TNS_END_PERCENT        = 100
 
 # export FASTROUTE_TCL = ./designs/$(PLATFORM)/$(DESIGN_NAME)/fastroute.tcl
-export DETAILED_ROUTE_ARGS = -droute_end_iter 0
+export DETAILED_ROUTE_ARGS = -droute_end_iter 5
 export GLOBAL_ROUTE_ARGS = -allow_congestion -verbose -congestion_iterations 2
