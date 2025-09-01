@@ -11,24 +11,20 @@ Before running the OpenROAD-3D flow scripts, please install the `openroad-flow-s
 Once installed, navigate to the `openroad-3d-flowdir` directory and execute the flow scripts:
 
 ```bash
-cd openroad-3d-flowdir/flow
-# Set FLOW_HOME to the current directory
-export FLOW_HOME=$(pwd)
+# Set up the environment by sourcing the env.sh script from your 
+# OpenROAD-flow-scripts installation. This defines paths to essential tools.
+# Replace '/path/to/OpenROAD-flow-scripts' with the actual path.
+cd /path/to/OpenROAD-flow-scripts && source /path/to/OpenROAD-flow-scripts/env.sh
 
-# If you have already sourced env.sh from your local OpenROAD-flow-scripts, these variables are set.
-# Otherwise, set the following environment variables to the paths of your installed tools:
-export OPENROAD_EXE=/path/to/openroad
-export STA_EXE=/path/to/sta
-export YOSYS_EXE=/path/to/yosys
+# Navigate to the flow directory
+cd /path/to/OpenROAD-3D-flowdir/flow
+# The OpenROAD-3D flow requires its own environment setup.
+# Source the local env.sh to correctly set FLOW_HOME.
+source ./env.sh
 
-# For additional tools such as HotSpot, install them as needed:
-#   cd HotSpot
-#   the final hotspot may fail to run if the HotSpot tool is not installed.
-#   Follow the instructions in HotSpot/README.md
-
-# Run the example 3D design flows:
-bash run_case_gcd.sh
-bash run_case_jpeg.sh
+# Run the example 3D design flows
+./run_case_gcd.sh
+./run_case_jpeg.sh
 ```
 
 The `run_case_gcd.sh` script provides step-by-step guidance for setting up and executing a 3D design flow using OpenROAD tools.
