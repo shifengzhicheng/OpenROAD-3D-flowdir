@@ -20,19 +20,15 @@ export ADDITIONAL_LEFS = $(PLATFORM_DIR)/lef_upper_shrink/NangateOpenCellLibrary
 export ADDITIONAL_LIBS = $(PLATFORM_DIR)/lib_upper/NangateOpenCellLibrary_typical.upper.lib \
                          $(PLATFORM_DIR)/lib_bottom/NangateOpenCellLibrary_typical.bottom.lib 
 
-export DIE_AREA    = 0 0 858890 858890
-export CORE_AREA   = 10.07 11.2 858890 858890
 
 # export PLACE_PINS_ARGS = -exclude left:* -exclude right:* -exclude top:* -exclude bottom:0-200 -exclude bottom:1000-1100
 
 export MACRO_PLACE_HALO = 10 10
 export MACRO_PLACE_CHANNEL = 20 20
 
-# export PLACE_DENSITY_LB_ADDON = 0.10
-# export CORE_UTILIZATION ?= 45
-# export PLACE_DENSITY_LB_ADDON = 0.20
+export PLACE_DENSITY_LB_ADDON = 0.10
 export TNS_END_PERCENT        = 100
 export SKIP_GATE_CLONING   = 1
-# export FASTROUTE_TCL = ./designs/$(PLATFORM)/$(DESIGN_NAME)/fastroute.tcl
+
 export DETAILED_ROUTE_ARGS = -droute_end_iter 5
 export GLOBAL_ROUTE_ARGS = -allow_congestion -verbose -congestion_iterations 2

@@ -9,7 +9,6 @@ if {[info exists ::env(FLOORPLAN_DEF)]} {
   }
   place_pins -hor_layer $::env(IO_PLACER_H) \
            -ver_layer $::env(IO_PLACER_V) \
-           -random \
            {*}$::env(PLACE_PINS_ARGS)
 }
 

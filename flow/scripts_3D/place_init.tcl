@@ -36,6 +36,10 @@ global_placement -density $place_density \
         -pad_right $::env(CELL_PAD_IN_SITES_GLOBAL_PLACEMENT) \
         {*}$global_placement_args
 
+place_pins -hor_layer $::env(IO_PLACER_H) \
+        -ver_layer $::env(IO_PLACER_V) \
+        {*}$::env(PLACE_PINS_ARGS)
+
 write_def $env(RESULTS_DIR)/$env(DEF_VERSION)_$env(DESIGN_DIMENSION).gp.def
 # write_verilog $env(RESULTS_DIR)/$env(DESIGN_DIMENSION).gp.v
 
