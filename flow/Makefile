@@ -96,7 +96,7 @@
 # DESIGN_CONFIG=./designs/gf180/uart-blocks/config.mk
 #
 # Default design
-# DESIGN_CONFIG ?= ./designs/nangate45/gcd/config.mk
+DESIGN_CONFIG ?= ./designs/nangate45/gcd/config.mk
 
 # Default TNS_END_PERCENT value
 export TNS_END_PERCENT ?=5
@@ -862,16 +862,16 @@ do-pin-3d-flow-place-init:
 .PHONY: do-pin-3d-flow-place-upper
 do-pin-3d-flow-place-upper:
 	mkdir -p $(RESULTS_DIR) $(LOG_DIR) $(REPORTS_DIR)
-	python3 scripts_3D/mark_cell.py --input $(RESULTS_DIR)/$(DEF_VERSION)_$(DESIGN_DIMENSION)_init_out.gp.def --output $(RESULTS_DIR)/$(DEF_VERSION)_$(DESIGN_DIMENSION)_upper_in.gp.def --backfix _bottom --status FIXED
+	python3 scripts_3D/mark_cell.py --input $(RESULTS_DIR)/$(DEF_VERSION)_$(DESIGN_DIMENSION).gp.def --output $(RESULTS_DIR)/$(DEF_VERSION)_$(DESIGN_DIMENSION).gp.def --backfix _bottom --status FIXED
 	$(OPENROAD_EXE) -exit scripts_3D/place_upper.tcl
-	python3 scripts_3D/mark_cell.py --input $(RESULTS_DIR)/$(DEF_VERSION)_$(DESIGN_DIMENSION)_upper_out.gp.def --output $(RESULTS_DIR)/$(DEF_VERSION)_$(DESIGN_DIMENSION)_upper_out.gp.def --backfix _bottom --status PLACED
+	python3 scripts_3D/mark_cell.py --input $(RESULTS_DIR)/$(DEF_VERSION)_$(DESIGN_DIMENSION).gp.def --output $(RESULTS_DIR)/$(DEF_VERSION)_$(DESIGN_DIMENSION).gp.def --backfix _bottom --status PLACED
 
 .PHONY: do-pin-3d-flow-place-bottom
 do-pin-3d-flow-place-bottom:
 	mkdir -p $(RESULTS_DIR) $(LOG_DIR) $(REPORTS_DIR)
-	python3 scripts_3D/mark_cell.py --input $(RESULTS_DIR)/$(DEF_VERSION)_$(DESIGN_DIMENSION)_upper_out.gp.def --output $(RESULTS_DIR)/$(DEF_VERSION)_$(DESIGN_DIMENSION)_bottom_in.gp.def --backfix _upper --status FIXED
+	python3 scripts_3D/mark_cell.py --input $(RESULTS_DIR)/$(DEF_VERSION)_$(DESIGN_DIMENSION).gp.def --output $(RESULTS_DIR)/$(DEF_VERSION)_$(DESIGN_DIMENSION).gp.def --backfix _upper --status FIXED
 	$(OPENROAD_EXE) -exit scripts_3D/place_bottom.tcl
-	python3 scripts_3D/mark_cell.py --input $(RESULTS_DIR)/$(DEF_VERSION)_$(DESIGN_DIMENSION)_bottom_out.gp.def --output $(RESULTS_DIR)/$(DEF_VERSION)_$(DESIGN_DIMENSION)_bottom_out.gp.def --backfix _upper --status PLACED
+	python3 scripts_3D/mark_cell.py --input $(RESULTS_DIR)/$(DEF_VERSION)_$(DESIGN_DIMENSION).gp.def --output $(RESULTS_DIR)/$(DEF_VERSION)_$(DESIGN_DIMENSION).gp.def --backfix _upper --status PLACED
 
 .PHONY: do-pin-3d-flow-2dpre
 do-pin-3d-flow-2dpre:
@@ -886,6 +886,7 @@ do-pin-3d-flow-pre:
 		--input $(RESULTS_DIR)/2_2_floorplan_io.def \
 		--output $(RESULTS_DIR)/$(DEF_VERSION)_$(DESIGN_DIMENSION).gp.def \
 		--partition $(RESULTS_DIR)/partition.txt
+	$(OPENROAD_EXE) -exit scripts_3D/init_odb.tcl
 
 
 .PHONY: clean_floorplan

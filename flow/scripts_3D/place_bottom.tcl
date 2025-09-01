@@ -7,8 +7,14 @@ set all_libs [concat $env(LIB_FILES)]
 foreach lib_file $all_libs {
     read_liberty $lib_file
 }
-puts "Reading DEF file: $env(RESULTS_DIR)/$env(DEF_VERSION)_$env(DESIGN_DIMENSION)_bottom_in.gp.def"
-read_def $env(RESULTS_DIR)/$env(DEF_VERSION)_$env(DESIGN_DIMENSION)_bottom_in.gp.def
+
+# read_verilog $env(RESULTS_DIR)/$env(DESIGN_DIMENSION).gp.v
+# link_design $env(DESIGN_NAME)
+# puts "Reading DEF file: $env(RESULTS_DIR)/$env(DEF_VERSION)_$env(DESIGN_DIMENSION).gp.def"
+# read_def -floorplan_initialize $env(RESULTS_DIR)/$env(DEF_VERSION)_$env(DESIGN_DIMENSION).gp.def
+# source $env(PLATFORM_HOME)/$env(PLATFORM)/setRC.tcl
+
+read_def $env(RESULTS_DIR)/$env(DEF_VERSION)_$env(DESIGN_DIMENSION).gp.def
 
 if {[info exist ::env(PLACE_DENSITY_LB_ADDON)]} {
     puts "PLACE_DENSITY_LB_ADDON is set: $::env(PLACE_DENSITY_LB_ADDON)"
@@ -31,6 +37,7 @@ global_placement -density $place_density \
         -pad_right $::env(CELL_PAD_IN_SITES_GLOBAL_PLACEMENT) \
         {*}$global_placement_args
 
-write_def $env(RESULTS_DIR)/$env(DEF_VERSION)_$env(DESIGN_DIMENSION)_bottom_out.gp.def
+write_def $env(RESULTS_DIR)/$env(DEF_VERSION)_$env(DESIGN_DIMENSION).gp.def
+# write_verilog $env(RESULTS_DIR)/$env(DESIGN_DIMENSION).gp.v
 
 save_image -resolution 0.1 $::env(RESULTS_DIR)/place_bottom.webp 
