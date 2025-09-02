@@ -10,4 +10,4 @@ designs/nangate45_3D/*/*.gp.def
 HotSpot/examples/3D_*
 HotSpot/scripts/output
 *.log
-version.txt
+versions.txt
